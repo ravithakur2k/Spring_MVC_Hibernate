@@ -12,29 +12,41 @@ import com.springdemo.entity.Customer;
 
 @Repository
 public class CustomerDAOImpl implements CustomerDAO {
-	
+
 	@Autowired
 	private SessionFactory sessionFactory;
 
 	@Override
 	public List<Customer> getCustomers() {
-		
-		//Get the current hibernate session
-		
+
+		// Get the current hibernate session
+
 		Session currentSession = sessionFactory.getCurrentSession();
-		
-		//Create the Query
-		
-		Query<Customer> theQuery = currentSession.createQuery("from Customer",Customer.class);
-		
-		//execute the query and get result list
-		
+
+		// Create the Query
+
+		Query<Customer> theQuery = currentSession.createQuery("from Customer order by lastName", Customer.class);
+
+		// execute the query and get result list
+
 		List<Customer> customers = theQuery.getResultList();
-		
-		//Return the results
+
+		// Return the results
 		return customers;
-		
-		
+
+	}
+
+	@Override
+	public void saveCustomer(Customer theCustomer) {
+
+		// Get the current hibernate session
+
+		Session currentSession = sessionFactory.getCurrentSession();
+
+		// Save the customer
+
+		currentSession.save(theCustomer);
+
 	}
 
 }

@@ -20,21 +20,29 @@
 	<div id="container">
 		<div id="content">
 
+			<!-- Add the new Button: Add Customer -->
+
+			<input type="button" value="Add Customer"
+				onclick="window.location.href='showFormForAdd';return false"
+				class="add-button">
 			<!--  add our html table here -->
-			<table>
-				<tr>
-					<th>First Name</th>
-					<th>Last Name</th>
-					<th>Email</th>
-				</tr>
-				<!-- loop over and print our customers -->
-				<c:forEach var="tempCustomer" items="${customers}">
+			<table border="1">
+				<tbody>
 					<tr>
-						<td>${tempCustomer.firstName}</td>
-						<td>${tempCustomer.lastName}</td>
-						<td>${tempCustomer.email}</td>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Email</th>
 					</tr>
-				</c:forEach>
+
+					<!-- loop over and print our customers -->
+					<c:forEach var="tempCustomer" items="${customers}">
+						<tr>
+							<td>${tempCustomer.firstName}</td>
+							<td>${tempCustomer.lastName}</td>
+							<td>${tempCustomer.email}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
 			</table>
 		</div>
 	</div>
