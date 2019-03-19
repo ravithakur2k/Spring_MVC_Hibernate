@@ -32,14 +32,25 @@
 						<th>First Name</th>
 						<th>Last Name</th>
 						<th>Email</th>
+						<th>Action</th>
 					</tr>
 
 					<!-- loop over and print our customers -->
 					<c:forEach var="tempCustomer" items="${customers}">
+						<c:url var="updatelink" value="/customer/showFormForUpdate">
+							<c:param name="customerid" value="${tempCustomer.id}"></c:param>
+						</c:url>
+						<c:url var="deletelink" value="/customer/delete">
+							<c:param name="customerid" value="${tempCustomer.id}"></c:param>
+						</c:url>
 						<tr>
 							<td>${tempCustomer.firstName}</td>
 							<td>${tempCustomer.lastName}</td>
 							<td>${tempCustomer.email}</td>
+							<td><a href="${updatelink}">Update</a> | <a
+								href="${deletelink}"
+								onclick="if(!(confirm('Are you sure you want to delete the customer?'))) return false">Delete</a>
+							</td>
 						</tr>
 					</c:forEach>
 				</tbody>
